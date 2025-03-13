@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title>lem-in2</title>
+    <!-- <base href="/"> -->
+    <!-- <link rel="stylesheet" href="../../csshandler/style.css"> -->
+    <!-- <link rel="stylesheet" href="../../csshandler/footer.css"> -->
+    <link rel="stylesheet" href="/assets/statics/css/style.css">
+    <link rel="stylesheet" href="/assets/statics/css/footer.css">
+</head>
+<body>
+    <header class="visu">
+        <h1 class="AppTitle" ><a href="/">Lem-in</a></h1>
+        <!-- <img src="../statics/img/FourmisInverse.gif" alt="FourmisInverse" srcset=""> -->
+         <h2 style="margin: 0 0 0 auto;">Nombre de fourmis: <span id="fourmisNumber"></span></h2>
+    </header>
+
+    <form action="/" method="post" class="visu">
+        <button type="submit" name="file" value="exemple00.txt">00</button>
+        <button type="submit" name="file" value="exemple01.txt">01</button>
+        <button type="submit" name="file" value="exemple02.txt">02</button>
+        <button type="submit" name="file" value="exemple03.txt">03</button>
+        <button type="submit" name="file" value="exemple04.txt">04</button>
+        <button type="submit" name="file" value="exemple05.txt">05</button>
+        <button type="submit" name="file" value="exemple06.txt">06</button>
+        <button type="submit" name="file" value="exemple07.txt">07</button>
+    </form>
+    <input type="hidden" id="startroom" value={{.StartRoom}}>
+    <input type="hidden" id="nbants" value={{.NBANTS}}>
+    <input type="hidden" id="con" value={{.Connexion}}>
+    <input type="hidden" id="path" value={{.Soluce}}>
+    <br>
+    <div class="result" id="result">
+            <!-- {{range .ParcoursHTML}}{{.}}{{end}} Loop over the pipeline(.) -->
+            {{range $case := .ParcoursHTML}}
+        {{$case}}
+        {{end}}
+        
+    </div>
+    <span class="soluce" id="soluce_container">
+        <div id="burger-menu" onclick="toggleMenu()">
+            <!-- Icône burger SVG -->
+            <svg class="iconburg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22 22H2V2h20zm-10-6.5l4.25-5.5h-8.5z"/></svg>
+        </div>
+        <div id="controls" style="z-index: 2;">
+            <button onclick="jeclic()" id="btnsoluce">Start <svg class="iconburg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.25 12L8.5 17.629V6.37z"/></svg></button>
+            <button onclick="stopfnc()" id="btnstop" value="false">Stop <svg class="iconburg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 8h8v8H8z"/></svg></button>
+
+        </div>
+        <p id="soluce"></p>
+    </span>
+    <div id="fourmiliere"></div>
+<footer>
+    <div>
+        <h3>Le-min</h3>
+        <p>Author:</p>
+        <ul class="author">
+            <li>jpelage <a href="https://zone01normandie.org/git/jpelage">[Gitea]</a></li>
+            <li>GLuck777 <a href="https://github.com/GLuck777">[Github]</a></li>
+        </ul>
+    </div>
+    <div>
+        <p>Last Modification: 03/2025</p> <!-- projet fait il y a 4 mois / 2 ans-->
+        <div><a href="https://zone01normandie.org/git/jpelage/le-min/" >Voir le projet LEMIN sur Gitea </a></div>
+        <div><a href="https://github.com/GLuck777/le-min/" >Voir le projet LEMIN sur Github</a></div>
+        
+    </div>
+</footer>
+<!-- <script src="/statics/js/helloWorld.js"></script> -->
+<script>
+        const connexions = {{.Connexion}}
+        // console.log(connexions)
+        maison = document.getElementById("fourmiliere")
+        
+        //Cree les lignes svg entre les salles connectées
+        function creerLignesSVG() {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            maison.appendChild(svg)
+            document.body.appendChild(maison); //creation balise svg dans le body de la page
+        
+            for (const connexion of connexions) {
+                // console.log("connexion actuelle: ",connexion);
+                const [salle1, salle2] = connexion.split(" est connectée à ");
+                const div1 = document.getElementById(salle1);
+                const div2 = document.getElementById(salle2);
+                // console.log("salles à connecter");
+                // console.log(salle1, salle2);
+                if (div1 && div2) {
+                let ligne = document.createElementNS("http://www.w3.org/2000/svg", "line"); //initialisation de la balise line
+                ligne.setAttribute("x1", div1.getBoundingClientRect().left + div1.getBoundingClientRect().width / 2);
+                ligne.setAttribute("y1", div1.getBoundingClientRect().top + div1.getBoundingClientRect().height / 2);
+                ligne.setAttribute("x2", div2.getBoundingClientRect().left + div2.getBoundingClientRect().width / 2);
+                ligne.setAttribute("y2", div2.getBoundingClientRect().top + div2.getBoundingClientRect().height / 2);
+                ligne.setAttribute("stroke", "bisque");
+                ligne.setAttribute("stroke-width", "30");
+                ligne.setAttribute("classe", "line");
+            
+                svg.appendChild(ligne); //creation balise line dans la balise svg
+                }
+            }
+        }
+        
+        // Appelez la fonction pour créer les lignes SVG
+        creerLignesSVG();
+    
+        //Pour avoir la position se la salle de départ
+        const Depart = document.getElementById("startroom").value; // Récupération de la donnée golang
+        // console.log(Depart);
+        const PositionD = document.getElementById(Depart)
+        // console.log(PositionD);
+        var positionsDepart = elPosition(PositionD); // obtient les coordonnés de la salle de départ (réajusté) => +30
+        // console.log({
+        //     "Position horizontale dans la fenêtre": positionsDepart.clientX, 
+        //     "Position verticale dans la fenêtre":   positionsDepart.clientY, 
+        //     "Position horizontale dans la zone d'affichage": positionsDepart.viewportX, 
+        //     "Position verticale dans la zone d'affichage":   positionsDepart.viewportY
+        // });
+        
+        function elPosition (a) {
+            var b = a.getBoundingClientRect();
+            return {
+                clientX: a.offsetLeft,
+                clientY: a.offsetTop-10,
+                viewportX: (b.x || b.left),
+                viewportY: (b.y || b.top)
+            }
+        }
+        // Section fourmis
+        const NBANTS = document.getElementById("nbants").value;
+        
+        for (let i = 1; i <= NBANTS; i++) {
+            let ant = document.createElement('div');
+            ant.setAttribute("class", "ants");
+            ant.setAttribute("id", "L"+i);
+            ant.setAttribute("style", "top:"+positionsDepart.clientY+"px; left:"+positionsDepart.clientX+"px;");
+            // ant.innerHTML = "L"+i; //ajout pour donner nom aux fourmis
+            
+            // ant.innerHTML = "<img src=\"http://www.animated-gifs.fr/category_animals/insects-ants/ant-87611182.gif\" alt=\"fourmis\" srcset=\"\">";
+            ant.innerHTML = "<img src=\"../assets/statics/img/FourmisUlt.gif\" alt=\"fourmis\" srcset=\"\">";
+            // ant.innerHTML = "<img src=\"http://www.animated-gifs.fr/category_animals/insects-ants/ant-73466534.gif\" alt=\"fourmis\" srcset=\"\">";
+            document.body.appendChild(ant);
+        }
+        //ajout perso nombre de fourmis qui seront testé
+        const antsCount = document.querySelectorAll('div.ants').length;
+        document.getElementById("fourmisNumber").innerText = antsCount;
+    
+    
+        //Mettre le chemin pour toutes les fourmis
+        //systeme pour mettre les fourmis au départ
+        //Avoir les chemins des fourmis avec Soluce et bouger les fourmis avec
+        const soluce = {{.Soluce}};
+        console.log(soluce);
+        const p = document.getElementById("soluce");
+        let timeoutId; // Pour stocker l'ID du setTimeout
+        let index = 0; // Rendre index global pour le réinitialiser
+        let isRunning = false; // Indiquer si la fonction est en cours d'exécution
+        // console.log(soluce);
+        function jeclic() {
+            if (isRunning) return; // Empêche le démarrage multiple
+            isRunning = true;
+            index = 0;
+
+            function afficherLigneSuivante() {
+                if (index < soluce.length) {
+                    if (soluce[index] === '\n') {
+                        p.insertAdjacentHTML('beforeend', '<br>');
+                    } else {
+                        p.insertAdjacentHTML('beforeend', soluce[index]);
+
+                        let ligneSoluce = soluce[index].split("  ");
+                        for (let j = 0; j < ligneSoluce.length; j++) {
+                            if (ligneSoluce[j] == soluce[soluce.length - 1]) {
+                                break;
+                            }
+
+                            if (document.getElementById("btnstop").value === "true") {
+                                stopfnc(); // Arrête et réinitialise
+                                return;
+                            }
+
+                            let [element1, element2] = ligneSoluce[j].split("-");
+                            let fourmis = document.getElementById(element1);
+                            let cell = document.getElementById(element2);
+                            let pos = elPosition(cell);
+                            fourmis.style.top = pos.clientY + "px";
+                            fourmis.style.left = pos.clientX + "px";
+                        }
+                    }
+                    index++;
+                    timeoutId = setTimeout(afficherLigneSuivante, 500); // Continue l'animation
+                } else {
+                    isRunning = false; // Animation terminée
+                }
+            }
+
+            afficherLigneSuivante();
+        }
+        //ajoute un systeme pour finir l'execution de la fonction afficherLigneSuivante
+        function stopfnc() {
+            clearTimeout(timeoutId); // Arrête l'animation en cours
+            isRunning = false;
+
+            // Réinitialise l'affichage
+            p.innerHTML = "";
+
+            for (let i = 1; i <= NBANTS; i++) {
+                let resant = document.getElementById("L" + i);
+                resant.style.top = positionsDepart.clientY + "px";
+                resant.style.left = positionsDepart.clientX + "px";
+            }
+
+            // Basculer l'état du bouton stop
+            let btnStop = document.getElementById("btnstop");
+            btnStop.value = btnStop.value === "true" ? "false" : "true";
+        }
+        function toggleMenu() {
+            const soluceContainer = document.getElementById('soluce_container');
+            soluceContainer.classList.toggle('reduced');
+        }
+
+</script>
+</body>
+</html>

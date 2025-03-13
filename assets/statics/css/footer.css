@@ -1,0 +1,31 @@
+footer{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 5vw;
+    justify-content: space-between;
+
+    background-color: rgb(75, 75, 75);
+
+    color: rgb(177, 192, 192);
+}
+footer ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1.2em;
+    /* Font */
+    font-size: 0.75rem;
+}
+footer ul li:before {
+    content: "⇝";
+    position: absolute;
+    left: -1em;
+}
+footer h3{
+    color: rgb(112, 128, 128);
+}
+footer a{
+    cursor: pointer;
+}
+footer a:hover{
+    color: aquamarine;
+}

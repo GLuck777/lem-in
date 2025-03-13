@@ -1,0 +1,54 @@
+.
+├── arborescence.txt
+├── assets
+│   ├── statics
+│   │   ├── css
+│   │   │   ├── footer.css
+│   │   │   └── style.css
+│   │   ├── img
+│   │   │   ├── ant-73466534.gif
+│   │   │   ├── FourmisInverse.gif
+│   │   │   └── FourmisUlt.gif
+│   │   └── js
+│   │       └── helloWorld.js
+│   └── templates
+│       ├── error.html
+│       ├── footer.tmpl
+│       ├── header.tmpl
+│       └── index_page.tmpl
+├── csshandler
+│   ├── footer.css
+│   └── style.css
+├── go.mod
+├── internal
+│   ├── colony
+│   │   ├── badexemple00.txt
+│   │   ├── badexemple01.txt
+│   │   ├── exemple00.txt
+│   │   ├── exemple01.txt
+│   │   ├── exemple02.txt
+│   │   ├── exemple03.txt
+│   │   ├── exemple04.txt
+│   │   ├── exemple05.txt
+│   │   ├── exemple06.txt
+│   │   ├── exemple07.txt
+│   │   └── exemple08.txt
+│   └── functions
+│       ├── AttackOnAnts.go
+│       ├── debug.go
+│       ├── Lecturefichier.go
+│       ├── lem-in.go
+│       ├── struct.go
+│       ├── text_format.go
+│       ├── Utils.go
+│       └── verification.go
+├── leminGraph
+│   ├── handlers
+│   │   ├── handler_error.go
+│   │   └── handler_index.go
+│   └── structures
+│       ├── const.go
+│       └── error.go
+├── lem-in.sh
+├── main.go
+└── ReadMe.md

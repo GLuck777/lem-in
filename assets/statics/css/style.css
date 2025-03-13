@@ -1,0 +1,177 @@
+body{
+    margin:0;padding:0;
+    list-style-type: none; 
+    text-decoration: none; 
+    background-color: rgba(58, 156, 1, 0.733);
+    color: #000;
+}
+header{
+    z-index: 1;
+    width: 70%; 
+    padding: 0 1rem;
+    margin: 0 auto 0 0;
+    background-color: rgb(102, 73, 5); 
+    /* background-color: rgb(255, 255, 255);  */
+    border: 6px solid #000; 
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+.visu{
+    z-index: 3;
+    position: relative;
+}
+h1 a{
+    z-index: 1;
+    color: #000;
+    text-decoration: none;
+}
+form {
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background: antiquewhite;
+    border: 2mm ridge rgba(47, 47, 38, 0.6);
+    display: flex;
+    justify-content: space-around;
+}
+form button {
+    z-index: 1;
+    border: 2.5px black solid;
+    border-radius: 4px;
+    background: #59d56087;
+    padding: 10px 20px;
+}
+form button:hover {
+    /* background: #64d16987; */
+    background: #fdfdfd;
+}
+form button:active{
+    background: #29522b;
+}
+svg {
+    height: 120vh;
+    /* height: 1700px; */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    /* top: 100px; */
+    z-index: 0;
+}
+.result {
+    margin: 35px 5% 160px 5%;
+}
+.Row{
+    /* width: 70%; */
+    display: flex;
+    flex-direction: row;
+}
+.Cube{
+    /* border: 1px solid #000; */
+    display: flex;
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+.rond {
+    font-size: 1.3rem;
+    display: flex;
+    border-radius: 50px;
+    background-color: bisque;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+.start{
+    background-color: rgb(190, 97, 97);
+}
+.end{
+    background-color: rgb(58, 58, 167);
+}
+.ants{
+    z-index: 1000;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    /* background-color: #252525; */
+    transition-duration: 1s;
+    color: #fdfdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .soluce {
+    z-index: 3;
+    color: #fdfdfd;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #252525;
+    opacity: 0.8;
+    width: 25%;
+    padding: 20px;
+    height: 80vh;
+    overflow-y: scroll;
+    box-sizing: border-box;
+} */
+/* Style principal */
+.soluce {
+    z-index: 3;
+    color: #fdfdfd;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #252525;
+    opacity: 0.8;
+    width: 430px; /* Largeur par défaut */
+    padding: 20px;
+    height: 80vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    transition: width 0.3s ease; /* Animation fluide */
+}
+
+/* Menu réduit */
+.soluce.reduced {
+    width: 80px; /* Taille réduite */
+    padding: 10px;
+    overflow: hidden; /* Cache le contenu */
+}
+
+/* Afficher seulement les boutons en colonne */
+#controls {
+    display: flex;
+    flex-direction: column; /* Empile en colonne */
+    gap: 10px; /* Espace entre les boutons */
+}
+#controls button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icône burger */
+#burger-menu {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Cacher le contenu sauf les boutons quand réduit */
+.soluce.reduced #soluce {
+    display: none; /* Cache le contenu */
+}
+svg.iconburg{
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+}
