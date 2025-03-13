@@ -162,9 +162,13 @@
             if (isRunning) return; // Empêche le démarrage multiple
             isRunning = true;
             index = 0;
-
+            let btnStop = document.getElementById("btnstop");
+            btnStop.value = "false";
+    
             function afficherLigneSuivante() {
+                
                 if (index < soluce.length) {
+                    console.log("nope Trehis", soluce, "et", index);
                     if (soluce[index] === '\n') {
                         p.insertAdjacentHTML('beforeend', '<br>');
                     } else {
@@ -173,10 +177,12 @@
                         let ligneSoluce = soluce[index].split("  ");
                         for (let j = 0; j < ligneSoluce.length; j++) {
                             if (ligneSoluce[j] == soluce[soluce.length - 1]) {
+                                console.log("blocage 1")
                                 break;
                             }
 
                             if (document.getElementById("btnstop").value === "true") {
+                                console.log("blocage 2")
                                 stopfnc(); // Arrête et réinitialise
                                 return;
                             }
@@ -214,7 +220,8 @@
 
             // Basculer l'état du bouton stop
             let btnStop = document.getElementById("btnstop");
-            btnStop.value = btnStop.value === "true" ? "false" : "true";
+            // btnStop.value = btnStop.value === "true" ? "false" : "true";
+            btnStop.value = "true";
         }
         function toggleMenu() {
             const soluceContainer = document.getElementById('soluce_container');
