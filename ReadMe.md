@@ -7,24 +7,24 @@ Upon successfully finding the quickest path, lem-in will display the content of 
 
 Lem-in project will search for the best paths available to use with 
 	Faire en sorte de respecter les règles des salles plusieurs fourmis peuvent entrer dans la salle start et
-	end mais une seule fournmis peut etre dans une salle à la fois
+	end mais une seule fourmis peut etre dans une salle à la fois
 	Mettre le systeme de tour et respecter la structure de réponse demandé dans la consigne*/
 
 ## Installation
-Clone the repository from : https://zone01normandie.org/git/lchouvil/lem-in.git
+Clone the repository from : [lem-in](https://github.com/GLuck777/le-min/)
 
 ## Usage
 
 ```
-cd main/
-go run . test1.txt
+version classique:
+go run . exemple01.txt
 
-
-go run ./main/. test1.txt
+version graphique:
+go run .
+[localhost](http://localhost:7653/)
 ```
 
 ## Authors
 _______
-+ lchouvil [Gitea](https://zone01normandie.org/git/lchouvil)
-+ aferrand  [Gitea](https://zone01normandie.org/git/aferrand)
 + jpelage  [Gitea](https://zone01normandie.org/git/jpelage)
++ GLuck777 [Github](https://github.com/GLuck777/)
