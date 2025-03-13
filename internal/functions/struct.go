@@ -85,4 +85,5 @@ type ImprimeGraph struct {
 	Connexion    []string
 	NBANTS       int
 	StartRoom    string
+	Title string
 }
