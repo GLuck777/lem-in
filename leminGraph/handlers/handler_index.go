@@ -46,6 +46,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 			Connexion:    LeminInfo.Connexion,
 			NBANTS:       LeminInfo.NBANTS,
 			StartRoom:    LeminInfo.StartRoom,
+			Title: file,
 		}
 		/*
 			Load Index
