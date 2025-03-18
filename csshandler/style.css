@@ -8,10 +8,18 @@ body{
 header{
     z-index: 1;
     width: 70%; 
-    padding-left: 10px;
+    padding: 0 1rem;
     margin: 0 auto 0 0;
     background-color: rgb(102, 73, 5); 
+    /* background-color: rgb(255, 255, 255);  */
     border: 6px solid #000; 
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+.visu{
+    z-index: 3;
+    position: relative;
 }
 h1 a{
     z-index: 1;
@@ -43,12 +51,13 @@ form button:active{
     background: #29522b;
 }
 svg {
-  /* height: 100vh; */
-  height: 1700px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 0;
+    height: 120vh;
+    /* height: 1700px; */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    /* top: 100px; */
+    z-index: 0;
 }
 .result {
     margin: 35px 5% 160px 5%;
@@ -94,20 +103,62 @@ svg {
     justify-content: center;
     align-items: center;
 }
-.soluce{
+
+/* Style principal */
+.soluce {
     z-index: 3;
     color: #fdfdfd;
     position: absolute;
     right: 0;
     top: 0;
-    background-color:#252525;
+    background-color: #252525;
     opacity: 0.8;
-    width: 20%;
-    min-width: fit-content;
+    width: 430px; /* Largeur par défaut */
     padding: 20px;
     height: 80vh;
-    overflow-y: scroll;
+    box-sizing: border-box;
+    transition: width 0.3s ease; /* Animation fluide */
 }
+#soluce{
+    overflow-y: auto;
+    height: 80%;
+}
+
+/* Menu réduit */
+.soluce.reduced {
+    width: 80px; /* Taille réduite */
+    padding: 10px;
+    overflow: hidden; /* Cache le contenu */
+}
+
+/* Afficher seulement les boutons en colonne */
+#controls {
+    display: flex;
+    flex-direction: column; /* Empile en colonne */
+    gap: 10px; /* Espace entre les boutons */
+}
+#controls button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icône burger */
+#burger-menu {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Cacher le contenu sauf les boutons quand réduit */
+.soluce.reduced #soluce {
+    display: none; /* Cache le contenu */
+}
+svg.iconburg{
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+}
+
 img {
     width: 100%;
     height: 100%;
