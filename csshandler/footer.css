@@ -1,13 +1,18 @@
 footer{
+    background-color: rgb(75, 75, 75);
+    position: absolute;
+    bottom: 0;
+    color: rgb(177, 192, 192);
+    width: 100%;
+}
+
+footer div.content{
     display: flex;
     flex-direction: row;
-    padding: 0px 5vw;
     justify-content: space-between;
-
-    background-color: rgb(75, 75, 75);
-
-    color: rgb(177, 192, 192);
+    margin: 0px 2vw;
 }
+
 footer ul {
     list-style: none;
     margin-left: 0;
