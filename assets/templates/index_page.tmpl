@@ -54,19 +54,21 @@
     </span>
     <div id="fourmiliere"></div>
 <footer>
-    <div>
-        <h3>Le-min</h3>
-        <p>Author:</p>
-        <ul class="author">
-            <li>jpelage <a href="https://zone01normandie.org/git/jpelage">[Gitea]</a></li>
-            <li>GLuck777 <a href="https://github.com/GLuck777">[Github]</a></li>
-        </ul>
-    </div>
-    <div>
-        <p>Last Modification: 03/2025</p> <!-- projet fait il y a 4 mois / 2 ans-->
-        <div><a href="https://zone01normandie.org/git/jpelage/le-min/" >Voir le projet LEMIN sur Gitea </a></div>
-        <div><a href="https://github.com/GLuck777/le-min/" >Voir le projet LEMIN sur Github</a></div>
-        
+    <div class="content">
+        <div>
+            <h3>Le-min</h3>
+            <p>Author:</p>
+            <ul class="author">
+                <li>jpelage <a href="https://zone01normandie.org/git/jpelage">[Gitea]</a></li>
+                <li>GLuck777 <a href="https://github.com/GLuck777">[Github]</a></li>
+            </ul>
+        </div>
+        <div>
+            <p>Last Modification: 03/2025</p> <!-- projet fait il y a 4 mois / 2 ans-->
+            <div><a href="https://zone01normandie.org/git/jpelage/le-min/" >Voir le projet LEMIN sur Gitea </a></div>
+            <div><a href="https://github.com/GLuck777/le-min/" >Voir le projet LEMIN sur Github</a></div>
+            
+        </div>
     </div>
 </footer>
 <!-- <script src="/statics/js/helloWorld.js"></script> -->
@@ -158,9 +160,12 @@
         let index = 0; // Rendre index global pour le réinitialiser
         let isRunning = false; // Indiquer si la fonction est en cours d'exécution
         // console.log(soluce);
+        let btnsoluce = document.getElementById("btnsoluce");
+
         function jeclic() {
             if (isRunning) return; // Empêche le démarrage multiple
             isRunning = true;
+            btnsoluce.disabled = true;
             index = 0;
             let btnStop = document.getElementById("btnstop");
             btnStop.value = "false";
@@ -208,6 +213,8 @@
         function stopfnc() {
             clearTimeout(timeoutId); // Arrête l'animation en cours
             isRunning = false;
+            btnsoluce.disabled = false;
+            
 
             // Réinitialise l'affichage
             p.innerHTML = "";
